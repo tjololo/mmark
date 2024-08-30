@@ -99,3 +99,7 @@ hr.nav {
     background-color: #f9f9f9;
   }
 }
+
+#map {
+  height: 200px;
+}

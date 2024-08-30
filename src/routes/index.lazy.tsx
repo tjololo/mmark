@@ -1,42 +1,31 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
-import {useState} from "react";
-import reactLogo from '../assets/react.svg'
-import tanstackLogo from '../assets/tanstack.png'
-import viteLogo from '/vite.svg'
-import '../App.css'
+import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import tileLayer from "../util/tileLayer.tsx";
+import L from "leaflet";
+
+export const DefaultIcon = L.icon({
+    iconUrl: icon,
+    shadowUrl: iconShadow,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+});
 
 export const Route = createLazyFileRoute('/')({
     component: Index,
 })
 
 function Index() {
-    const [count, setCount] = useState(0)
-
     return (
-        <>
-            <div>
-                <a href="https://vitejs.dev" target="_blank">
-                    <img src={viteLogo} className="logo" alt="Vite logo"/>
-                </a>
-                <a href="https://react.dev" target="_blank">
-                    <img src={reactLogo} className="logo react" alt="React logo"/>
-                </a>
-                <a href="https://tanstack.com" target="_blank">
-                    <img src={tanstackLogo} className="logo tanstack" alt="Tanstack logo"/>
-                </a>
-            </div>
-            <h1>Vite + React + Tanstack</h1>
-            <div className="card">
-                <button onClick={() => setCount((count) => count + 1)}>
-                count is {count}
-                </button>
-                <p>
-                    Edit <code>src/App.tsx</code> and save to test HMR
-                </p>
-            </div>
-            <p className="read-the-docs">
-                Click on the Vite and React logos to learn more
-            </p>
-        </>
+        <MapContainer center={[66.10671, 13.6980]} zoom={12} scrollWheelZoom={true} style={{ height: "50vh", width:"100vh" }}>
+            <TileLayer {...tileLayer} />
+            <Marker position={[66.10671, 13.6980]} draggable={true} icon={DefaultIcon}>
+                <Popup>
+                    A pretty CSS3 popup. <br /> Easily customizable.
+                </Popup>
+            </Marker>
+        </MapContainer>
     )
 }
