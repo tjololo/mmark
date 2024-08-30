@@ -1926,31 +1926,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hello-tanstack-router@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "hello-tanstack-router@workspace:."
-  dependencies:
-    "@eslint/js": "npm:^9.9.0"
-    "@react-oauth/google": "npm:^0.12.1"
-    "@tanstack/react-router": "npm:^1.48.1"
-    "@tanstack/router-devtools": "npm:^1.48.1"
-    "@tanstack/router-plugin": "npm:^1.47.0"
-    "@types/node": "npm:^22.4.1"
-    "@types/react": "npm:^18.3.3"
-    "@types/react-dom": "npm:^18.3.0"
-    "@vitejs/plugin-react": "npm:^4.3.1"
-    eslint: "npm:^9.9.0"
-    eslint-plugin-react-hooks: "npm:^5.1.0-rc.0"
-    eslint-plugin-react-refresh: "npm:^0.4.9"
-    globals: "npm:^15.9.0"
-    react: "npm:^18.3.1"
-    react-dom: "npm:^18.3.1"
-    typescript: "npm:^5.5.3"
-    typescript-eslint: "npm:^8.0.1"
-    vite: "npm:^5.4.1"
-  languageName: unknown
-  linkType: soft
-
 "http-cache-semantics@npm:^4.1.1":
   version: 4.1.1
   resolution: "http-cache-semantics@npm:4.1.1"
@@ -2381,6 +2356,31 @@ __metadata:
   checksum: 10c0/46ea0f3ffa8bc6a5bc0c7081ffc3907777f0ed6516888d40a518c5111f8366d97d2678911ad1a6882bf592fa9de6c784fea32e1687bb94e1f4944170af48a5cf
   languageName: node
   linkType: hard
+
+"mmark@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "mmark@workspace:."
+  dependencies:
+    "@eslint/js": "npm:^9.9.0"
+    "@react-oauth/google": "npm:^0.12.1"
+    "@tanstack/react-router": "npm:^1.48.1"
+    "@tanstack/router-devtools": "npm:^1.48.1"
+    "@tanstack/router-plugin": "npm:^1.47.0"
+    "@types/node": "npm:^22.4.1"
+    "@types/react": "npm:^18.3.3"
+    "@types/react-dom": "npm:^18.3.0"
+    "@vitejs/plugin-react": "npm:^4.3.1"
+    eslint: "npm:^9.9.0"
+    eslint-plugin-react-hooks: "npm:^5.1.0-rc.0"
+    eslint-plugin-react-refresh: "npm:^0.4.9"
+    globals: "npm:^15.9.0"
+    react: "npm:^18.3.1"
+    react-dom: "npm:^18.3.1"
+    typescript: "npm:^5.5.3"
+    typescript-eslint: "npm:^8.0.1"
+    vite: "npm:^5.4.1"
+  languageName: unknown
+  linkType: soft
 
 "ms@npm:2.1.2":
   version: 2.1.2
