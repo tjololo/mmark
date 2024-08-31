@@ -1,9 +1,13 @@
-import { createLazyFileRoute } from '@tanstack/react-router'
+import {createFileRoute} from '@tanstack/react-router'
 import {CircleMarker, MapContainer, Popup, TileLayer} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import {DefaultTileLayer} from "../constants/leafletConstants";
+import {jokeQueryOptions} from "../query/chuckJokes.tsx";
+import {useSuspenseQuery} from "@tanstack/react-query";
 
-export const Route = createLazyFileRoute('/')({
+export const Route = createFileRoute('/')({
+    loader: ({ context: { queryClient } }) =>
+        queryClient.ensureQueryData(jokeQueryOptions),
     component: Index,
 })
 
@@ -19,14 +23,17 @@ function Index() {
 }
 
 function MyMarker() : React.JSX.Element {
+    const jokeuery = useSuspenseQuery(jokeQueryOptions)
+    const joke = jokeuery.data;
     const positions = getMarkerPositions();
     return (
         <>
-            {positions.map((mp) => {
+            {positions.map((mp, index) => {
                 return (
-                    <CircleMarker center={[mp.lat,mp.lon]} pathOptions={{color: 'red', fillColor: 'red'}} radius={5}>
+                    <CircleMarker key={index} center={[mp.lat,mp.lon]} pathOptions={{color: 'red', fillColor: 'red'}} radius={5}>
                         <Popup>
-                            {mp.text}
+                            {mp.text} <br/>
+                            {joke?.value}
                         </Popup>
                     </CircleMarker>
                 )

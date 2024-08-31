@@ -743,6 +743,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/query-core@npm:5.53.1":
+  version: 5.53.1
+  resolution: "@tanstack/query-core@npm:5.53.1"
+  checksum: 10c0/9014bdf5a21f9ba9830cdd1289deeb29e4b881872b86a2dc60cd2ca06a194284437f371b77ec210897c8500429b4f41371d959cecfddfcc73f067ef09fc77a20
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query@npm:^5.53.1":
+  version: 5.53.1
+  resolution: "@tanstack/react-query@npm:5.53.1"
+  dependencies:
+    "@tanstack/query-core": "npm:5.53.1"
+  peerDependencies:
+    react: ^18 || ^19
+  checksum: 10c0/2506360d2dc1b57fedaa42b1a01d2f561a672643bc728f36261ff16764c6f0159a0950be8190b52cfabb8911d96c09f2cd124dc41fd1fbca514a0482db3bd813
+  languageName: node
+  linkType: hard
+
 "@tanstack/react-router@npm:^1.48.1":
   version: 1.51.8
   resolution: "@tanstack/react-router@npm:1.51.8"
@@ -2406,6 +2424,7 @@ __metadata:
   dependencies:
     "@eslint/js": "npm:^9.9.0"
     "@react-oauth/google": "npm:^0.12.1"
+    "@tanstack/react-query": "npm:^5.53.1"
     "@tanstack/react-router": "npm:^1.48.1"
     "@tanstack/router-devtools": "npm:^1.48.1"
     "@tanstack/router-plugin": "npm:^1.47.0"
@@ -2423,6 +2442,7 @@ __metadata:
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
     react-leaflet: "npm:^4.2.1"
+    redaxios: "npm:^0.5.1"
     typescript: "npm:^5.5.3"
     typescript-eslint: "npm:^8.0.1"
     vite: "npm:^5.4.1"
@@ -2704,6 +2724,13 @@ __metadata:
   dependencies:
     picomatch: "npm:^2.2.1"
   checksum: 10c0/6fa848cf63d1b82ab4e985f4cf72bd55b7dcfd8e0a376905804e48c3634b7e749170940ba77b32804d5fe93b3cc521aa95a8d7e7d725f830da6d93f3669ce66b
+  languageName: node
+  linkType: hard
+
+"redaxios@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "redaxios@npm:0.5.1"
+  checksum: 10c0/544b2cddc77ac3b98b201f6224788cc42156a238e64519914c50ed09b5acda73fcadc6ba01000d26d65af8dc4cbb2335a37063681e08e821147a18268a808039
   languageName: node
   linkType: hard
 
