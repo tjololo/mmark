@@ -100,6 +100,7 @@ hr.nav {
   }
 }
 
-#map {
-  height: 200px;
+.mapContainer {
+  height: 40em;
+  width: 40em;
 }

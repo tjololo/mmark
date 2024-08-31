@@ -1,17 +1,7 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
-import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
+import {CircleMarker, MapContainer, Popup, TileLayer} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
-import tileLayer from "../util/tileLayer.tsx";
-import L from "leaflet";
-
-export const DefaultIcon = L.icon({
-    iconUrl: icon,
-    shadowUrl: iconShadow,
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-});
+import {DefaultTileLayer} from "../constants/leafletConstants";
 
 export const Route = createLazyFileRoute('/')({
     component: Index,
@@ -19,13 +9,43 @@ export const Route = createLazyFileRoute('/')({
 
 function Index() {
     return (
-        <MapContainer center={[66.10671, 13.6980]} zoom={12} scrollWheelZoom={true} style={{ height: "50vh", width:"100vh" }}>
-            <TileLayer {...tileLayer} />
-            <Marker position={[66.10671, 13.6980]} draggable={true} icon={DefaultIcon}>
-                <Popup>
-                    A pretty CSS3 popup. <br /> Easily customizable.
-                </Popup>
-            </Marker>
+        <div className={"mapContainer"}>
+        <MapContainer center={[66.10671, 13.6980]} zoom={12} scrollWheelZoom={true} style={{ height: "100%", width: "100%"}}>
+            <TileLayer {...DefaultTileLayer} />
+            <MyMarker />
         </MapContainer>
+        </div>
     )
+}
+
+function MyMarker() : React.JSX.Element {
+    const positions = getMarkerPositions();
+    return (
+        <>
+            {positions.map((mp) => {
+                return (
+                    <CircleMarker center={[mp.lat,mp.lon]} pathOptions={{color: 'red', fillColor: 'red'}} radius={5}>
+                        <Popup>
+                            {mp.text}
+                        </Popup>
+                    </CircleMarker>
+                )
+            })}
+        </>
+    )
+}
+
+type MarkedPosition = {
+    lat: number,
+    lon: number,
+    text: string
+}
+
+function getMarkerPositions() : MarkedPosition[] {
+    return [
+        {lat: 66.10671, lon: 13.6980, text: "First marker"},
+        {lat: 66.10671, lon: 13.7080, text: "Second marker"},
+        {lat: 66.10671, lon: 13.7180, text: "Third marker"},
+        {lat: 66.10671, lon: 13.7280, text: "Fourth marker"},
+    ]
 }
