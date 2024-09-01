@@ -10,7 +10,8 @@
       "matchCurrentVersion": ">=1.0.0",
       "matchPackagePatterns": ["*"],
       "matchUpdateTypes": ["minor", "patch"],
-      "groupSlug": "npm-minor-patch"
+      "groupSlug": "npm-minor-patch",
+      "minimumReleaseAge": "3 days"
     }
   ]
 }
