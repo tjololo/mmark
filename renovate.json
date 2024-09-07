@@ -13,5 +13,8 @@
       "groupSlug": "npm-minor-patch",
       "minimumReleaseAge": "3 days"
     }
+  ],
+  "postUpdateOptions": [
+    "gomodTidy"
   ]
 }
