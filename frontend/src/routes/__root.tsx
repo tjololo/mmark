@@ -1,9 +1,10 @@
 import {createRootRouteWithContext, Link, Outlet} from '@tanstack/react-router'
 import React, {Suspense} from "react";
 import {QueryClient} from "@tanstack/react-query";
+import {Auth} from "../Auth/auth.tsx";
 
 export const Route = createRootRouteWithContext<{queryClient: QueryClient}>()({
-    component: Root,
+    component: Root
 })
 
 function Root() {
@@ -29,6 +30,7 @@ function Root() {
                 </Link>
             </div>
             <hr className="nav"/>
+            <Auth />
             <Outlet/>
             <Suspense>
                 <TanStackRouterDevtools/>
