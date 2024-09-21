@@ -23,7 +23,7 @@ function Index() {
 }
 
 function MyMarker() : React.JSX.Element {
-    const marksQuery = useSuspenseQuery(mapMarksQueryOptions)
+    const marksQuery = useSuspenseQuery(mapMarksQueryOptions);
     const marks = marksQuery.data;
     return (
         <>
