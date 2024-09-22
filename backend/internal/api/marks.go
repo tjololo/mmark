@@ -62,6 +62,10 @@ func (api *MarksApi) RegisterMark(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	_, err = w.Write(responseBody)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }
 
 type MapMark struct {
