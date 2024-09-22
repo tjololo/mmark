@@ -15,7 +15,6 @@ export const mapMarksQueryOptions = queryOptions({
 })
 
 const fetchMarks = async () => {
-    console.info('Fetching marks...' + import.meta.env.VITE_API_BASE_HOST)
     const apiBaseHost = !import.meta.env.VITE_API_BASE_HOST ? "http://localhost:8080" : import.meta.env.VITE_API_BASE_HOST
     await new Promise((r) => setTimeout(r, 500))
     return axios
