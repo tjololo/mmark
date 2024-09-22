@@ -5,6 +5,7 @@ import (
 	"flag"
 	"github.com/gorilla/mux"
 	"github.com/tjololo/mmark/backend/internal/api"
+	"github.com/tjololo/mmark/backend/internal/storage"
 	"log"
 	"net/http"
 	"os"
@@ -13,14 +14,17 @@ import (
 )
 
 func main() {
-	marksApi := api.NewMarksApi()
-
 	var wait time.Duration
+	var rootPath string
 	flag.DurationVar(&wait, "graceful-timeout", time.Second*15, "the duration for which the server gracefully wait for existing connections to finish - e.g. 15s or 1m")
+	flag.StringVar(&rootPath, "root-path", "data", "the path to the root directory where marks are stored")
 	flag.Parse()
-
+	marksApi := api.NewMarksApi(
+		storage.NewFileMapMarks(rootPath),
+	)
 	r := mux.NewRouter()
-	r.HandleFunc("/marks", marksApi.GetMarks)
+	r.HandleFunc("/marks", marksApi.GetMarks).Methods("GET")
+	r.HandleFunc("/marks", marksApi.RegisterMark).Methods("POST")
 
 	srv := &http.Server{
 		Addr: "0.0.0.0:8080",

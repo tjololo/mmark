@@ -8,7 +8,8 @@
     "dev": "vite --port 3000",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start-backend": "cd ../backend && go run main.go"
   },
   "dependencies": {
     "@react-oauth/google": "^0.12.1",
