@@ -19,9 +19,13 @@ func NewMarksApi(markStorage storage.MarkStorage) *MarksApi {
 func (api *MarksApi) GetMarks(w http.ResponseWriter, _ *http.Request) {
 	// Get all marks
 	marks, err := api.marksStorage.GetMarks()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	responseBody, err := json.Marshal(mapToApiMarka(marks))
+	responseBody, err := json.Marshal(mapToApiMarks(marks))
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -73,7 +77,7 @@ type RegisterMark struct {
 	Lng   float64 `json:"lng"`
 }
 
-func mapToApiMarka(marks []storage.MapMark) []MapMark {
+func mapToApiMarks(marks []storage.MapMark) []MapMark {
 	result := make([]MapMark, 0, len(marks))
 	for _, mark := range marks {
 		result = append(result, mapToApiMark(mark))
@@ -82,9 +86,13 @@ func mapToApiMarka(marks []storage.MapMark) []MapMark {
 }
 
 func mapToApiMark(mark storage.MapMark) MapMark {
+	title := ""
+	if t, ok := mark.Metadata["title"].(string); ok {
+		title = t
+	}
 	return MapMark{
 		Id:    mark.Id,
-		Title: mark.Metadata["title"].(string),
+		Title: title,
 		Lat:   mark.Lat,
 		Lng:   mark.Lng,
 	}
