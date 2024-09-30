@@ -25,9 +25,6 @@ function Root() {
                 <Link to="/" className="[&.active]:font-bold nav-item">
                     Home
                 </Link>
-                <Link to="/auth" className="[&.active]:font-bold nav-item">
-                    Auth
-                </Link>
             </div>
             <hr className="nav"/>
             <Auth />
