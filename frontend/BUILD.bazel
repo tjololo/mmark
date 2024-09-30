@@ -1,0 +1,65 @@
+# TODO: add unit tests instead of only testing building
+load("@bazel_skylib//rules:build_test.bzl", "build_test")
+load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+load("@npm//frontend:vite/package_json.bzl", vite_bin = "bin")
+
+npm_link_all_packages(name = "node_modules")
+
+CONFIGS = [
+    "index.html",
+    "package.json",
+    "vite.config.ts",
+    "tsconfig.app.json",
+    "tsconfig.json",
+    "tsconfig.node.json"
+]
+
+BUILD_DEPS = [":node_modules/" + d for d in [
+    "@tanstack/react-router",
+    "@tanstack/react-query",
+    "@tanstack/router-plugin",
+    "@react-oauth/google",
+    "redaxios",
+    "leaflet",
+    "react",
+    "react-dom",
+    "react-leaflet",
+    "@vitejs/plugin-react",
+    "vite"
+]]
+
+
+copy_to_bin(
+    name = "vite_srcs_export",
+    srcs = glob([
+        "src/**/*.css",
+        "src/**/*.svg",
+        "src/**/*.png",
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "public/**/*.json",
+        "public/**/*.svg",
+    ]),
+)
+
+vite_bin.vite(
+    name = "build",
+    srcs = CONFIGS + BUILD_DEPS + [":vite_srcs_export"],
+    args = ["build"],
+    chdir = package_name(),
+    out_dirs = ["dist"],
+)
+
+vite_bin.vite_binary(
+    name = "vite",
+    chdir = package_name(),
+    data = CONFIGS + BUILD_DEPS + [":vite_srcs_export"],
+)
+
+build_test(
+    name = "build_test",
+    targets = [
+        ":build",
+    ],
+)
