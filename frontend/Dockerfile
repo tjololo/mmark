@@ -25,7 +25,7 @@ RUN mkdir -p /opt/var/cache/nginx && \
     cp /usr/share/zoneinfo/${TIME_ZONE:-ROC} /opt/etc/localtime && \
     rm -rf /usr/share/nginx/html
 
-FROM node:20 as build
+FROM node:22 as build
 COPY . /app
 WORKDIR /app
 RUN corepack enable && yarn install && yarn build
